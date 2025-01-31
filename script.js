@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const addButton = document.getElementById("add-task-btn");
   const taskInput = document.getElementById("task-input");
   const taskList = document.getElementById("task-list");
+
+  function loadTasks() {
+    const saveTasks = localStorage.getItem("tasks");
+    if (saveTasks) {
+      JSON.parse(saveTasks).forEach((taskText) => {
+        addTask(taskText, false);
+      });
+    }
+  }
   function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText === "") {
@@ -12,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
     listItem.textContent = taskText;
 
     const removeButton = document.createElement("button");
-    removeButton.textContent = "remove";
-    removeButton.className = "remove-btn";
+    removeButton.textContent = "Remove";
+    removeButton.className.add("remove-btn");
     removeButton.onclick = function () {
       taskList.removeChild(listItem);
     };
