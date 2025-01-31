@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
+  function saveTasks() {
+    const tasks = [...taskList.children].map((li) => li.firstChild.textContent);
+    localStorage.setItem("tasls", JSON.stringify(tasks));
+  }
   function addTask() {
     const taskText = taskInput.value.trim();
     if (taskText === "") {
@@ -22,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
-    removeButton.className.add("remove-btn");
+    removeButton = ["className.add()"];
     removeButton.onclick = function () {
       taskList.removeChild(listItem);
     };
